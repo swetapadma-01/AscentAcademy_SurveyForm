@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Survey Form</title>
+    <style>
+      /* Styling for the form */
+      form {
+        max-width: 600px;
+        margin: 0 auto;
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        border: 1px solid #ccc;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      select,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 16px;
+      }
+
+      input[type="submit"] {
+        background-color: #4caf50;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+
+      /* Styling for error messages */
+      .error {
+        color: red;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2 style="text-align: center;">Survey Form</h2>
+    <form id="survey-form">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="age">Age:</label>
+      <input type="text" id="age" name="age" required>
+
+      <label for="gender">Gender:</label>
+      <select id="gender" name="gender" required>
+        <option value="">Select your gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="message">Details of Contact:</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+
+      <input type="submit" value="Submit">
+    </form>
+
+    <script>
+      const form = document.getElementById("survey-form");
+      const nameInput = document.getElementById("name");
+      const ageInput = document.getElementById("age");
+      const emailInput = document.getElementById("email");
+      const errorMessage = document.createElement("div");
+      errorMessage.classList.add("error");
+
+      form.addEventListener("submit", function (event) {
+        if (!isValidName(nameInput.value)) {
+          event.preventDefault();
+          errorMessage.textContent = "Please enter a valid name.";
+          nameInput.insertAdjacentElement("afterend", errorMessage);
+        }
+
+        if (!isValidAge(ageInput.value)) {
+          event.preventDefault();
+          errorMessage.textContent = "Please enter a valid age.";
+          ageInput.insertAdjacentElement("afterend", errorMessage);
+        }
+
+        if (!isValidEmail(emailInput.value)) {
+          event.preventDefault();
+          errorMessage.textContent = "Please enter a valid email.";
+          emailInput.insertAdjacentElement("afterend", errorMessage);
+        }
+      });
+
+      function isValidName(name) {
+        return /^[A-Za-z\s]+$/.test(name);
+      }
+
+      function isValidAge(age) {
+        return /^[1-9][0-9]?$|^100$/.
+      }
+    
